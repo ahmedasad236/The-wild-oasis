@@ -57,6 +57,10 @@ const Button = styled.button`
   border-radius: var(--border-radius-sm);
   box-shadow: var(--shadow-sm);
   cursor: pointer;
+
+  &:hover {
+    background-color: var(--color-brand-700);
+  }
 `;
 
 export default Button;
