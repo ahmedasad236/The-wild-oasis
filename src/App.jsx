@@ -12,7 +12,12 @@ function App() {
 
         <Heading as="h3">Heading 3</Heading>
 
-        <Button>Check-in</Button>
+        <Button
+          variation="primary"
+          size="small"
+        >
+          Check-in
+        </Button>
         <Input
           placeholder="number of guests"
           type="number"
