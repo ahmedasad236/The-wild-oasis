@@ -1,10 +1,9 @@
-import styled from 'styled-components';
-import { formatCurrency } from '../../utils/helpers';
-import { useMutation, useQueryClient } from '@tanstack/react-query';
-import { deleteCabin } from '../../services/apiCabins';
-import { toast } from 'react-hot-toast';
 import { useState } from 'react';
+import styled from 'styled-components';
+
 import CreateCabinForm from './CreateCabinForm';
+import { useDeleteCabin } from './hooks/useDeleteCabin';
+import { formatCurrency } from '../../utils/helpers';
 const TableRow = styled.div`
   display: grid;
   grid-template-columns: 0.6fr 1.8fr 2.2fr 1fr 1fr 1fr;
@@ -54,26 +53,15 @@ function CabinRow({ cabin }) {
     max_capacity
   } = cabin;
 
+  // a custom hook used to delete a cabin
+  const { isDeleting, deleteCabin } = useDeleteCabin();
+
   const [showForm, setShowForm] = useState(false);
 
   function handleCloseForm() {
     setShowForm(false);
   }
 
-  // a hook used to invalidate the fetched data, to refetch them again
-  const queryClient = useQueryClient();
-
-  // a hook used to mutate the data
-  const { isLoading: isDeleting, mutate } = useMutation({
-    mutationFn: deleteCabin,
-    onSuccess: () => {
-      toast.success('Cabin was deleted successfully');
-      queryClient.invalidateQueries({
-        queryKey: ['cabins']
-      });
-    },
-    onError: (err) => toast.error(err.message)
-  });
   return (
     <>
       {' '}
@@ -82,11 +70,15 @@ function CabinRow({ cabin }) {
         <Cabin>{name}</Cabin>
         <div>Fits up to {max_capacity} guests</div>
         <Price>{formatCurrency(regular_price)}</Price>
-        <Discount>{formatCurrency(discount)}</Discount>
+        {discount ? (
+          <Discount>{formatCurrency(discount)}</Discount>
+        ) : (
+          <span>&mdash;</span>
+        )}
         <div>
           <button onClick={() => setShowForm((prev) => !prev)}>Edit</button>
           <button
-            onClick={() => mutate(cabinId)}
+            onClick={() => deleteCabin(cabinId)}
             disabled={isDeleting}
           >
             Delete

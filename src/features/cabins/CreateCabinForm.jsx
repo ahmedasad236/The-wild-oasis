@@ -4,56 +4,46 @@ import Button from '../../ui/Button';
 import FileInput from '../../ui/FileInput';
 import Textarea from '../../ui/Textarea';
 import { useForm } from 'react-hook-form';
-import { useMutation, useQueryClient } from '@tanstack/react-query';
-import { createEditCabin } from '../../services/apiCabins';
-import { toast } from 'react-hot-toast';
 import FormRow from '../../ui/FormRow';
+import { useCreateCabin } from './hooks/useCreateCabin';
+import { useEditCabin } from './hooks/useEditCabin';
 
 function CreateCabinForm({ handleCloseForm, cabinToEdit = {} }) {
+  const { isCreating, createCabin } = useCreateCabin();
+  const { isEditing, editCabin } = useEditCabin();
+
   // Check if it is an edit action
   const { id: editId, ...editValues } = cabinToEdit;
   let isEditSession = Boolean(editId);
-
   const { register, handleSubmit, reset, getValues, formState } = useForm({
     defaultValues: isEditSession ? editValues : {}
   });
   const { errors } = formState;
-
-  const queryClient = useQueryClient();
-  const { isLoading: isCreating, mutate: createCabin } = useMutation({
-    mutationFn: createEditCabin,
-    onSuccess: () => {
-      toast.success('Cabin was created successfully');
-      queryClient.invalidateQueries({
-        queryKey: ['cabins']
-      });
-      reset();
-      handleCloseForm();
-    },
-    onError: (err) => toast.error(err.message)
-  });
-
-  const { isLoading: isEditing, mutate: editCabin } = useMutation({
-    mutationFn: createEditCabin,
-    onSuccess: () => {
-      toast.success('Cabin was edited successfully');
-      queryClient.invalidateQueries({
-        queryKey: ['cabins']
-      });
-      reset();
-      handleCloseForm();
-    },
-    onError: (err) => toast.error(err.message)
-  });
 
   const isWorking = isCreating || isEditing;
 
   function onSubmit(data) {
     const image = typeof data.image === 'string' ? data.image : data.image[0];
     if (isEditSession) {
-      editCabin({ ...data, image }, editId);
+      editCabin(
+        { newCabinData: { ...data, image }, id: editId },
+        {
+          onSuccess: () => {
+            reset();
+            handleCloseForm();
+          }
+        }
+      );
     } else {
-      createCabin({ ...data, image });
+      createCabin(
+        { ...data, image },
+        {
+          onSuccess: () => {
+            reset();
+            handleCloseForm();
+          }
+        }
+      );
     }
   }
 
