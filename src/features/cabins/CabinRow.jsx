@@ -3,6 +3,8 @@ import { formatCurrency } from '../../utils/helpers';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { deleteCabin } from '../../services/apiCabins';
 import { toast } from 'react-hot-toast';
+import { useState } from 'react';
+import CreateCabinForm from './CreateCabinForm';
 const TableRow = styled.div`
   display: grid;
   grid-template-columns: 0.6fr 1.8fr 2.2fr 1fr 1fr 1fr;
@@ -52,6 +54,12 @@ function CabinRow({ cabin }) {
     max_capacity
   } = cabin;
 
+  const [showForm, setShowForm] = useState(false);
+
+  function handleCloseForm() {
+    setShowForm(false);
+  }
+
   // a hook used to invalidate the fetched data, to refetch them again
   const queryClient = useQueryClient();
 
@@ -67,19 +75,31 @@ function CabinRow({ cabin }) {
     onError: (err) => toast.error(err.message)
   });
   return (
-    <TableRow role="row">
-      <Img src={image} />
-      <Cabin>{name}</Cabin>
-      <div>Fits up to {max_capacity} guests</div>
-      <Price>{formatCurrency(regular_price)}</Price>
-      <Discount>{formatCurrency(discount)}</Discount>
-      <button
-        onClick={() => mutate(cabinId)}
-        disabled={isDeleting}
-      >
-        Delete
-      </button>
-    </TableRow>
+    <>
+      {' '}
+      <TableRow role="row">
+        <Img src={image} />
+        <Cabin>{name}</Cabin>
+        <div>Fits up to {max_capacity} guests</div>
+        <Price>{formatCurrency(regular_price)}</Price>
+        <Discount>{formatCurrency(discount)}</Discount>
+        <div>
+          <button onClick={() => setShowForm((prev) => !prev)}>Edit</button>
+          <button
+            onClick={() => mutate(cabinId)}
+            disabled={isDeleting}
+          >
+            Delete
+          </button>
+        </div>
+      </TableRow>
+      {showForm && (
+        <CreateCabinForm
+          handleCloseForm={handleCloseForm}
+          cabinToEdit={cabin}
+        />
+      )}
+    </>
   );
 }
 
