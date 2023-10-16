@@ -1,6 +1,6 @@
 import { createClient } from '@supabase/supabase-js';
 
-const supabaseUrl = 'https://lzyjwvkzzwhcgayemtvp.supabase.co';
+export const supabaseUrl = 'https://lzyjwvkzzwhcgayemtvp.supabase.co';
 
 // it is completely safe to save this key in the client because we applied a Row level security (RLS)
 const supabaseKey =

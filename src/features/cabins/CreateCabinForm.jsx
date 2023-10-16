@@ -26,7 +26,7 @@ function CreateCabinForm() {
   });
 
   function onSubmit(data) {
-    mutate(data);
+    mutate({ ...data, image: data.image[0] });
   }
   return (
     <Form onSubmit={handleSubmit(onSubmit)}>
