@@ -1,3 +1,4 @@
+import { cloneElement, createContext, useContext, useState } from 'react';
 import { createPortal } from 'react-dom';
 import { HiXMark } from 'react-icons/hi2';
 import styled from 'styled-components';
@@ -51,7 +52,27 @@ const Button = styled.button`
   }
 `;
 
-function Modal({ children, onClose }) {
+// 1- Create the context of the modal
+const ModalContext = createContext();
+
+// 2- Create the parent component
+function Modal({ children }) {
+  const [currentWindow, setCurrentWindow] = useState('');
+  const close = () => setCurrentWindow('');
+  const open = setCurrentWindow;
+
+  return (
+    <ModalContext.Provider value={{ currentWindow, close, open }}>
+      {children}
+    </ModalContext.Provider>
+  );
+}
+
+// 3- Create the children components
+function Window({ children, name }) {
+  const { close, currentWindow } = useContext(ModalContext);
+
+  if (name !== currentWindow) return null;
   /* use createPortal to put it in the desired position in the dom 
      with keeping it in its place in the react component tree.
 
@@ -60,14 +81,25 @@ function Modal({ children, onClose }) {
   return createPortal(
     <Overlay>
       <StyledModal>
-        <Button onClick={onClose}>
+        <Button onClick={close}>
           <HiXMark />
         </Button>
-        <div>{children}</div>
+        <div>{cloneElement(children, { onCloseModal: close })}</div>
       </StyledModal>
     </Overlay>,
     document.body
   );
 }
+
+function Open({ children, opens: opensWindowName }) {
+  const { open } = useContext(ModalContext);
+
+  // Use the cloneElement function to return a new version of the children component with a prop onClick to handle open window
+  return cloneElement(children, { onClick: () => open(opensWindowName) });
+}
+
+// 4- Add these children components to the parent component
+Modal.Open = Open;
+Modal.Window = Window;
 
 export default Modal;
