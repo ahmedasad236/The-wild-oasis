@@ -1,4 +1,5 @@
-import styled from "styled-components";
+import { createContext, useContext } from 'react';
+import styled from 'styled-components';
 
 const StyledTable = styled.div`
   border: 1px solid var(--color-grey-200);
@@ -58,3 +59,50 @@ const Empty = styled.p`
   text-align: center;
   margin: 2.4rem;
 `;
+
+// 1- Create the context of the Table
+const TableContext = createContext();
+
+// 2- Create the parent component
+function Table({ columns, children }) {
+  return (
+    <TableContext.Provider value={{ columns }}>
+      <StyledTable role="table">{children}</StyledTable>
+    </TableContext.Provider>
+  );
+}
+
+// 3- Create the child components
+function Header({ children }) {
+  const { columns } = useContext(TableContext);
+  return (
+    <StyledHeader
+      role="row"
+      as="header"
+      columns={columns}
+    >
+      {children}
+    </StyledHeader>
+  );
+}
+function Body({ children }) {}
+function Row({ children }) {
+  const { columns } = useContext(TableContext);
+  return (
+    <StyledRow
+      role="row"
+      columns={columns}
+    >
+      {children}
+    </StyledRow>
+  );
+}
+
+// 4- Add the child components to the parent
+Table.Header = Header;
+Table.Row = Row;
+Table.Body = Body;
+Table.Footer = Footer;
+Table.Empty = Empty;
+
+export default Table;
