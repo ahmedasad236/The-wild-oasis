@@ -1,7 +1,15 @@
-import { cloneElement, createContext, useContext, useState } from 'react';
+import {
+  cloneElement,
+  createContext,
+  useContext,
+  useEffect,
+  useRef,
+  useState
+} from 'react';
 import { createPortal } from 'react-dom';
 import { HiXMark } from 'react-icons/hi2';
 import styled from 'styled-components';
+import { useOutsideClick } from '../hooks/useOutsideClick';
 
 const StyledModal = styled.div`
   position: fixed;
@@ -71,7 +79,7 @@ function Modal({ children }) {
 // 3- Create the children components
 function Window({ children, name }) {
   const { close, currentWindow } = useContext(ModalContext);
-
+  const ref = useOutsideClick(close);
   if (name !== currentWindow) return null;
   /* use createPortal to put it in the desired position in the dom 
      with keeping it in its place in the react component tree.
@@ -80,7 +88,7 @@ function Window({ children, name }) {
   */
   return createPortal(
     <Overlay>
-      <StyledModal>
+      <StyledModal ref={ref}>
         <Button onClick={close}>
           <HiXMark />
         </Button>
