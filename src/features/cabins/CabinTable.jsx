@@ -12,13 +12,19 @@ function CabinTable() {
   const filterValue = searchParams.get('discount') || 'all';
   let filteredCabins;
 
-  console.log(filterValue);
+  // 1) This is for filter
   if (filterValue === 'with-discount') {
     filteredCabins = cabins.filter((cabin) => cabin.discount > 0);
   } else if (filterValue === 'no-discount') {
     filteredCabins = cabins.filter((cabin) => cabin.discount === 0);
   } else {
     filteredCabins = cabins;
+  }
+
+  // 2) This is for sorting
+  const sortBy = searchParams.get('sortBy') || 'sort-name-asc';
+  let sortedCabins;
+  if (sortBy) {
   }
   return (
     <Menus>
