@@ -1,4 +1,5 @@
-import styled, { css } from "styled-components";
+import { useSearchParams } from 'react-router-dom';
+import styled, { css } from 'styled-components';
 
 const StyledFilter = styled.div`
   border: 1px solid var(--color-grey-100);
@@ -33,3 +34,30 @@ const FilterButton = styled.button`
     color: var(--color-brand-50);
   }
 `;
+
+// Reusable Filter component based on changing the filter value in the URL
+function Filter({ filterField, options }) {
+  // Use this hook to handle the search params for filtering data
+  const [searchParams, setSearchParams] = useSearchParams();
+  function handleClick(value) {
+    searchParams.set(filterField, value);
+    setSearchParams(searchParams);
+  }
+
+  const currentFilterValue = searchParams.get(filterField) || options[0].value;
+  return (
+    <StyledFilter>
+      {options.map((option) => (
+        <FilterButton
+          key={option.value}
+          onClick={() => handleClick(option.value)}
+          active={option.value === currentFilterValue}
+        >
+          {option.label}
+        </FilterButton>
+      ))}
+    </StyledFilter>
+  );
+}
+
+export default Filter;
