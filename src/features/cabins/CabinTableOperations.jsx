@@ -21,11 +21,11 @@ function CabinTableOperations() {
           { value: 'regular_price-desc', label: 'Sorty by price (High first)' },
           {
             value: 'max_capacity-asc',
-            label: 'Sorty by max capacity (Low first)'
+            label: 'Sorty by capacity (Low first)'
           },
           {
             value: 'max_capacity-desc',
-            label: 'Sorty by max capacity (High first)'
+            label: 'Sorty by capacity (High first)'
           }
         ]}
       />
