@@ -1,3 +1,4 @@
+import { add } from 'date-fns';
 import { useSearchParams } from 'react-router-dom';
 import styled, { css } from 'styled-components';
 
@@ -41,6 +42,9 @@ function Filter({ filterField, options }) {
   const [searchParams, setSearchParams] = useSearchParams();
   function handleClick(value) {
     searchParams.set(filterField, value);
+
+    // To handle the error if the data is less than the current page
+    searchParams.set('page', 1);
     setSearchParams(searchParams);
   }
 

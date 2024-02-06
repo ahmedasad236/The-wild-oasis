@@ -80,13 +80,13 @@ function Pagination({ count }) {
 
   return (
     <StyledPagination>
-      <p>
+      <P>
         Showing{' '}
         <span>
           {currPage === totalPages ? count : (currPage - 1) * PAGE_SIZE + 1}
         </span>{' '}
         to <span>{currPage * PAGE_SIZE}</span> of <span>{count}</span> results
-      </p>
+      </P>
 
       <Buttons>
         <PaginationButton
