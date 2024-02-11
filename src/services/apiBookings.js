@@ -16,7 +16,6 @@ export async function getBookings({ filter, sortBy, page }) {
   }
 
   if (sortBy) {
-    console.log(sortBy);
     query = query.order(sortBy.field, {
       ascending: sortBy.direction === 'asc'
     });
@@ -32,7 +31,6 @@ export async function getBookings({ filter, sortBy, page }) {
   let { data: bookings, error, count } = await query;
 
   if (error) {
-    console.log(error);
     throw new Error('Error in fetching bookings');
   }
 

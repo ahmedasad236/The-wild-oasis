@@ -7,21 +7,17 @@ export function useLogin() {
   const navigate = useNavigate();
   const queryClient = useQueryClient();
 
-  const {
-    mutate: login,
-    isLoading,
-    data: user
-  } = useMutation({
+  const { mutate: login, isLoading } = useMutation({
     mutationFn: ({ email, password }) => loginAPI({ email, password }),
-    onSuccess: () => {
+    onSuccess: (user) => {
       // set the user data in the cache
-      queryClient.setQueriesData(['user'], user);
+      queryClient.setQueryData(['user'], user);
 
       // show a success message
       toast.success('Welcome back!');
 
-      // navigate to the dashboard
-      navigate('/dashboard');
+      // navigate to the dashboard, replacing the current location from the history
+      navigate('/dashboard', { replace: true });
     },
     onError: (err) =>
       toast.error(
