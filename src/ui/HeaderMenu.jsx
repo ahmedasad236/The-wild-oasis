@@ -15,15 +15,11 @@ function HeaderMenu() {
 
   return (
     <StyledHeaderMenu>
-      <li>
-        <ButtonIcon onClick={() => navigate('/account')}>
-          <HiOutlineUser />
-        </ButtonIcon>
-      </li>
+      <ButtonIcon onClick={() => navigate('/account')}>
+        <HiOutlineUser />
+      </ButtonIcon>
 
-      <li>
-        <Logout />
-      </li>
+      <Logout />
     </StyledHeaderMenu>
   );
 }
