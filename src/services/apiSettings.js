@@ -8,7 +8,6 @@ export async function getSettings() {
     throw new Error('Settings could not be loaded');
   }
 
-  console.log(data);
   return data;
 }
 

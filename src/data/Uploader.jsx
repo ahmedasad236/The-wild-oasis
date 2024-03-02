@@ -94,8 +94,6 @@ async function createBookings() {
     };
   });
 
-  console.log(finalBookings);
-
   const { error } = await supabase.from('Bookings').insert(finalBookings);
   if (error) console.log(error.message);
 }
