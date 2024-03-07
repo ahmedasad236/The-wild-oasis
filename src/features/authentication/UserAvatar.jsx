@@ -23,7 +23,10 @@ const Avatar = styled.img`
 
 function UserAvatar() {
   const { user } = useUser();
-  const { avatar, fullName } = user?.user.user_metadata;
+
+  // Destructure the user object to get the user's full name and avatar
+  // for the first display after login, the user object is nested inside the user object
+  const { fullName, avatar } = user?.user?.user_metadata || user.user_metadata;
   return (
     <StyledUserAvatar>
       <Avatar

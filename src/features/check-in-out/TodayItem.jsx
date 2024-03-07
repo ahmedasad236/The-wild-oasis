@@ -7,7 +7,7 @@ import { Link } from 'react-router-dom';
 
 const StyledTodayItem = styled.li`
   display: grid;
-  grid-template-columns: repeat(3, 1fr) 10rem;
+  grid-template-columns: repeat(2, 1fr) 10rem 1fr;
   gap: 1.2rem;
   align-items: center;
 

@@ -11,6 +11,7 @@ export function useLogin() {
     mutationFn: ({ email, password }) => loginApi({ email, password }),
     onSuccess: (user) => {
       // set the user data in the cache
+      console.log('USER', user);
       queryClient.setQueryData(['user'], user.user);
 
       // navigate to the dashboard, replacing the current location from the history
