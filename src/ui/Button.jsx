@@ -54,6 +54,10 @@ const Button = styled.button`
   border: none;
   ${(props) => sizes[props.size]}
   ${(props) => variations[props.variation]}
+  &:disabled {
+    background-color: var(--color-grey-200);
+    color: var(--color-grey-400);
+  }
 `;
 
 Button.defaultProps = {

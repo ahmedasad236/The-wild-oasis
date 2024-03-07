@@ -2,6 +2,9 @@ import styled from 'styled-components';
 
 import Heading from '../../ui/Heading';
 import Row from '../../ui/Row';
+import Spinner from '../../ui/Spinner';
+import { useTodayActivity } from './hooks/useTodayActivity';
+import TodayItem from './TodayItem';
 
 const StyledToday = styled.div`
   /* Box */
@@ -20,6 +23,9 @@ const StyledToday = styled.div`
 const TodayList = styled.ul`
   overflow: scroll;
   overflow-x: hidden;
+  display: flex;
+  flex-direction: column;
+  gap: 1.6rem;
 
   /* Removing scrollbars for webkit, firefox, and ms, respectively */
   &::-webkit-scrollbar {
@@ -37,11 +43,27 @@ const NoActivity = styled.p`
 `;
 
 function TodayActivity() {
+  const { isLoading, todaysActivity } = useTodayActivity();
   return (
     <StyledToday>
       <Row type="horizontal">
         <Heading as="h2">Today</Heading>
       </Row>
+
+      {isLoading ? (
+        <Spinner />
+      ) : todaysActivity.length === 0 ? (
+        <NoActivity>No activity today...</NoActivity>
+      ) : (
+        <TodayList>
+          {todaysActivity.map((activity) => (
+            <TodayItem
+              activity={activity}
+              key={activity.id}
+            />
+          ))}
+        </TodayList>
+      )}
     </StyledToday>
   );
 }

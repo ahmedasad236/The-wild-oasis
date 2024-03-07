@@ -1,5 +1,6 @@
 import { useEffect, useRef } from 'react';
 
+// by default, listen for capturing phase
 export function useOutsideClick(handleFunc, listenCapturing = true) {
   const ref = useRef();
 

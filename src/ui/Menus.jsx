@@ -87,6 +87,9 @@ function Menus({ children }) {
 function Toggle({ id }) {
   const { openId, close, open, setPosition } = useContext(MenusContext);
   function handleClick(e) {
+    // To prevent the event from bubbling up to the parent
+    e.stopPropagation();
+
     const rect = e.target.closest('button').getBoundingClientRect();
     setPosition({
       x: window.innerWidth - rect.width - rect.x,
@@ -105,7 +108,10 @@ function Toggle({ id }) {
 
 function List({ id, children }) {
   const { openId, position, close } = useContext(MenusContext);
-  const ref = useOutsideClick(close);
+
+  // Close the menu when clicking outside of it and don't listen for capturing phase
+  // For more reading: https://javascript.info/bubbling-and-capturing
+  const ref = useOutsideClick(close, false);
   if (openId !== id) return null;
 
   return createPortal(
