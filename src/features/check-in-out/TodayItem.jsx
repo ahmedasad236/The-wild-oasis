@@ -28,7 +28,6 @@ const Guest = styled.div`
 
 function TodayItem({ activity }) {
   const { status, Guests, num_nights, id } = activity;
-  console.log('act', activity);
   return (
     <StyledTodayItem>
       {status === 'unconfirmed' && <Tag type="green">Arriving</Tag>}
