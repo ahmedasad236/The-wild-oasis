@@ -36,7 +36,7 @@ hotel to check in guests as they arrive
 <hr>
 
 <section id="live-demo">
-  <h2>Live demo: <a href="#">The Wild Oasis</a></h2>
+  <h2>Live demo: <a href="https://the-wild-oasis-nine-ruby.vercel.app/">The Wild Oasis</a></h2>
 </section>
 
 <section id="features">
