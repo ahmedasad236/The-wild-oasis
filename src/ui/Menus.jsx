@@ -92,8 +92,8 @@ function Toggle({ id }) {
 
     const rect = e.target.closest('button').getBoundingClientRect();
     setPosition({
-      x: window.innerWidth - rect.width - rect.x,
-      y: 8 + rect.height + rect.y
+      x: window.innerWidth - rect.width - rect.x + 50,
+      y: -20 + rect.y
     });
     if (openId === '' || openId !== id) open(id);
     else close();

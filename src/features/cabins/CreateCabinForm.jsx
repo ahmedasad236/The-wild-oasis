@@ -15,7 +15,7 @@ function CreateCabinForm({ cabinToEdit = {}, onCloseModal }) {
   // Check if it is an edit action
   const { id: editId, ...editValues } = cabinToEdit;
   let isEditSession = Boolean(editId);
-  const { register, handleSubmit, reset, getValues, formState } = useForm({
+  const { register, handleSubmit, reset, formState } = useForm({
     defaultValues: isEditSession ? editValues : {}
   });
   const { errors } = formState;
@@ -100,7 +100,7 @@ function CreateCabinForm({ cabinToEdit = {}, onCloseModal }) {
 
       <FormRow
         error={errors?.discount?.message}
-        label="Dicount"
+        label="Discount"
       >
         <Input
           disabled={isWorking}
@@ -109,8 +109,8 @@ function CreateCabinForm({ cabinToEdit = {}, onCloseModal }) {
           defaultValue={0}
           {...register('discount', {
             required: 'This field is required',
-            validate: (value) =>
-              value <= getValues().regular_price ||
+            validate: (value, formValues) =>
+              parseInt(value) <= parseInt(formValues.regular_price) ||
               'The discount should be less than regular price'
           })}
         />

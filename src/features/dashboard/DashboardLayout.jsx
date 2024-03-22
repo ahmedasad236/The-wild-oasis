@@ -28,15 +28,15 @@ function DashboardLayout() {
     <StyledDashboardLayout>
       <Stats
         bookings={bookings}
-        confirmedStays={confirmedStays}
+        confirmedStays={confirmedStays || []}
         numDays={numDays}
-        cabinsCount={cabins.length}
+        cabinsCount={cabins.length || []}
       />
       <TodayActivity />
       <DurationChart confirmedStays={confirmedStays} />
       <SalesChart
-        bookings={bookings}
-        numDays={numDays}
+        bookings={bookings || []}
+        numDays={numDays || []}
       />
     </StyledDashboardLayout>
   );

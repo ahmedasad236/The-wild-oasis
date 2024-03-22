@@ -6,6 +6,9 @@ const Heading = styled.h1`
     css`
       font-size: 3rem;
       font-weight: 600;
+      @media (max-width: 968px) {
+        font-size: 2rem;
+      }
     `}
 
   ${(props) =>
@@ -13,6 +16,9 @@ const Heading = styled.h1`
     css`
       font-size: 2rem;
       font-weight: 600;
+      @media (max-width: 968px) {
+        font-size: 1.5rem;
+      }
     `}
 
     ${(props) =>
@@ -20,6 +26,9 @@ const Heading = styled.h1`
     css`
       font-size: 2rem;
       font-weight: 450;
+      @media (max-width: 968px) {
+        font-size: 1.8rem;
+      }
     `}
 
     ${(props) =>
@@ -28,6 +37,9 @@ const Heading = styled.h1`
       font-size: 3rem;
       font-weight: 600;
       text-align: center;
+      @media (max-width: 968px) {
+        font-size: 1.8rem;
+      }
     `}
 `;
 

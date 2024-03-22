@@ -1,4 +1,3 @@
-import { add } from 'date-fns';
 import { useSearchParams } from 'react-router-dom';
 import styled, { css } from 'styled-components';
 
@@ -25,7 +24,7 @@ const FilterButton = styled.button`
 
   border-radius: var(--border-radius-sm);
   font-weight: 500;
-  font-size: 1.4rem;
+  font-size: 1.1rem;
   /* To give the same height as select */
   padding: 0.44rem 0.8rem;
   transition: all 0.3s;
@@ -33,6 +32,10 @@ const FilterButton = styled.button`
   &:hover:not(:disabled) {
     background-color: var(--color-brand-600);
     color: var(--color-brand-50);
+  }
+
+  @media (max-width: 1024px) {
+    flex: 1;
   }
 `;
 
