@@ -3,15 +3,29 @@
 </div>
 <h2 >📝 Table of Contents</h2>
 
-<div style="display: flex; flex-direction: column;">
-    <a style="display: block;" href="#description" style="display: block;">📑 Description</a>
-    <a href="#live-demo" style="display: block;">🌍 Live demo</a>
-    <a href="#features" style="display: block;">⭐ Features</a>
-    <a href="#technologies" style="display: block;"> ⛏️ Built-with</a>
-    <a href="#snapshots" style="display: block;">📹 Snapshots(Demo Video)</a>
-    <a href="#future" style="display: block;">⏭️️ Future work</a>
-    <a href="#ack" style="display: block;">🤝 Acknowledgment</a>
-</div>
+<ul style="display: flex; flex-direction: column;">
+    <li>
+    <a href="#description">📑 Description</a>
+    </li>
+    <li>
+    <a href="#live-demo">🌍 Live demo</a>
+    </li>
+    <li>
+    <a href="#features">⭐ Features</a>
+    </li>
+    <li>
+    <a href="#technologies"> ⛏️ Built-with</a>
+    </li>
+    <li>
+    <a href="#snapshots">📹 Snapshots(Demo Video)</a>
+    </li>
+    <li>
+    <a href="#future">⏭️️ Future work</a>
+    </li>
+    <li>
+    <a href="#ack">🤝 Acknowledgment</a>
+    </li>
+</ul>
 <hr />
 
 <secion id="description">
