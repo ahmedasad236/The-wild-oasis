@@ -1,18 +1,21 @@
 <div style="list-style: none; display: flex; flex-direction: column; gap: 10px;  justify-content: center; align-items: center">
 <img width="50%" src="./images/logo.svg"/>
 </div>
-<h2>Index</h2>
+<h2 >📝 Table of Contents</h2>
+
 <div style="display: flex; flex-direction: column;">
-    <a href="#description">Description</a>
-    <a href="#live-demo">Live demo</a>
-    <a href="#features">Features</a>
-    <a href="#technologies">Technologies</a>
-    <a href="#ack">Acknowledgment</a>
+    <a style="display: block;" href="#description" style="display: block;">📑 Description</a>
+    <a href="#live-demo" style="display: block;">🌍 Live demo</a>
+    <a href="#features" style="display: block;">⭐ Features</a>
+    <a href="#technologies" style="display: block;"> ⛏️ Built-with</a>
+    <a href="#snapshots" style="display: block;">📹 Snapshots(Demo Video)</a>
+    <a href="#future" style="display: block;">⏭️️ Future work</a>
+    <a href="#ack" style="display: block;">🤝 Acknowledgment</a>
 </div>
 <hr />
 
 <secion id="description">
-<h2>Description</h2>
+<h2>📑 Description</h2>
 <ul style="list-style: none; display: flex; flex-direction: column; gap: 10px;">
   <li>  
    👉  <b>The Wild Oasis</b> is a small boutique hotel with 8
@@ -35,11 +38,11 @@ hotel to check in guests as they arrive
 <hr>
 
 <section id="live-demo">
-  <h2>Live demo: <a href="https://the-wild-oasis-nine-ruby.vercel.app/">The Wild Oasis</a></h2>
+  <h2>🌍 Live demo: <a target="_blank" href="https://the-wild-oasis-nine-ruby.vercel.app/">The Wild Oasis</a></h2>
 </section>
 
 <section id="features">
-<h2>Features</h2>
+<h2>⭐ Features</h2>
 
 <ul style="list-style: none;">
  <li>
@@ -151,7 +154,7 @@ hotel to check in guests as they arrive
 <hr>
 
 <section id="technologies">
-<h2>Technologgies</h2>
+<h2>⛏️ Built-with</h2>
     <ul style="list-style: none; display: flex; flex-direction: column; gap: 10px;">
         <li style="display: flex; align-items: center; gap: 15px;">
         <b>
@@ -198,7 +201,19 @@ hotel to check in guests as they arrive
     </ul>
 <section>
 
+<section id="snapshots">
+<h2>📹 Snapshots(Demo Video)</h2>
+
+<a href="https://www.youtube.com/watch?v=rzJV29hBSAo" target="_blank">go to youtube</a>
+
+</section>
+
+<section id="future">
+<h2>⏭️️ Future work</h2>
+Mainly I should work on responsive design for to make the webiste in a good view on small screens. 
+</section>
+
 <section id="ack">
-<h2>Acknowledgment</h2>
+<h2>🤝 Acknowledgment</h2>
 I had implemented this project during the course <b>ultimate-react-course</b> by Mr.<b>Jonas schmedtmann</b> 
 </section>
