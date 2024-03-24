@@ -12,10 +12,10 @@ import { useUpdateUser } from './hooks/useUpdateUser';
 function UpdateUserDataForm() {
   // We don't need the loading state, and can immediately use the user data, because we know that it has already been loaded at this point
   const { user } = useUser();
-  const { email } = user?.user;
-  const { fullName: currentFullName } = user?.user.user_metadata;
   const { updateUser, isUpdating } = useUpdateUser();
-
+  const { email } = user?.user || user;
+  const { fullName: currentFullName } =
+    user?.user_metadata || user?.user.user_metadata;
   const [fullName, setFullName] = useState(currentFullName);
   const [avatar, setAvatar] = useState(null);
 

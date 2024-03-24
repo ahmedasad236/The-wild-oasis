@@ -7,5 +7,6 @@ export function useTodayActivity() {
     queryFn: getStaysTodayActivity
   });
 
+  console.log("Today's activity: ", data, isLoading);
   return { todaysActivity: data, isLoading };
 }

@@ -6,7 +6,7 @@ import Spinner from '../../ui/Spinner';
 import { useUpdateSettings } from './hooks/useUpdateSettings';
 
 function UpdateSettingsForm() {
-  const { isUpdating, updateSettings } = useUpdateSettings();
+  const { updateSettings } = useUpdateSettings();
   const {
     isLoading,
     settings: {

@@ -7,7 +7,6 @@
     <a href="#live-demo">Live demo</a>
     <a href="#features">Features</a>
     <a href="#technologies">Technologies</a>
-    <a href="#dockerization">Dockerization</a>
     <a href="#ack">Acknowledgment</a>
 </div>
 <hr />
@@ -199,10 +198,7 @@ hotel to check in guests as they arrive
     </ul>
 <section>
 
-<section id="dockerization">
-</section>
-
 <section id="ack">
 <h2>Acknowledgment</h2>
-I had implemented this project during the course <b>ultimate-react-course</b> by Mr.<b>Jonas Schmidtmann</b> 
+I had implemented this project during the course <b>ultimate-react-course</b> by Mr.<b>Jonas schmedtmann</b> 
 </section>
